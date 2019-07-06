@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/reset'
   get 'home/ping'
   get 'home/pong'
   get 'home/index'

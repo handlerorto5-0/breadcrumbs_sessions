@@ -10,6 +10,11 @@ class HomeController < ApplicationController
   def index
   end
 
+  def reset
+    reset_session
+    @breadcrumbs = nil
+  end
+
   private
   def set_breadcrumbs
     if session[:breadcrumbs]

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :set_breadcrumbs
+
   def ping
   end
 
@@ -6,5 +8,23 @@ class HomeController < ApplicationController
   end
 
   def index
+  end
+
+  private
+  def set_breadcrumbs
+    if session[:breadcrumbs]
+      @breadcrumbs = session[:breadcrumbs]
+    else
+      @breadcrumbs = Array.new
+    end
+
+    @breadcrumbs.push(request.url)
+
+    if @breadcrumbs.count > 4
+      # shift removes the first elements
+      @breadcrumbs.shift
+    end
+
+    session[:breadcrumbs] = @breadcrumbs
   end
 end
